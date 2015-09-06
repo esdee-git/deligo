@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytes"
 	"flag"
 	"fmt"
 	"html/template"
@@ -21,10 +22,11 @@ func RootHandler(response http.ResponseWriter, request *http.Request) {
 		if error := request.ParseForm(); error == nil {
 			url := request.PostForm.Get("url")
 			tags := request.PostForm.Get("tags")
-			notes := request.PostForm.Get("notes")
-			echoString := fmt.Sprintf("received %s:%s:%s", url, tags, notes)
-			response.Write([]byte(echoString))
-			log.Println(echoString)
+			description := request.PostForm.Get("description")
+			addLinkResult := deliGo(url, tags, description)
+			buffer := bytes.NewBufferString(addLinkResult)
+			response.Write(buffer.Bytes())
+			log.Println(addLinkResult)
 		}
 	} else {
 		response.Header().Set("Content-type", "text/html")
@@ -42,6 +44,7 @@ func main() {
 	var staticPath = flag.String("staticPath", "dist/", "Path to static files")
 
 	flag.Parse()
+	readDeliciousData()
 
 	router := mux.NewRouter()
 	router.HandleFunc("/", RootHandler)
