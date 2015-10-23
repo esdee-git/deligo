@@ -5,4 +5,5 @@ i've been thinking for some more or less practical tasks to learn Go and came up
 
 for simple communication with delicious api i used code from https://github.com/josegm/yummy/, since for some reason my hacks didn't work.
 other than that the code used http package with Gorilla's mux. 
-i had a lot of fun with the frontend, header.html, where i played somewhat with bootstrap and jquery's ajax
+i had a lot of fun with the frontend, header.html, where i played somewhat with bootstrap and jquery's ajax.
+eventually i also added dependency management through glide and docker image configuration in the Dockerfile file
