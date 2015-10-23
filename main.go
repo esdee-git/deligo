@@ -39,7 +39,7 @@ func RootHandler(response http.ResponseWriter, request *http.Request) {
 }
 
 func main() {
-	var host = flag.String("host", "127.0.0.1", "IP of host to run webserver on")
+	var host = flag.String("host", "0.0.0.0", "IP of host to run webserver on")//must be at least 0.0.0.0 because 127.0.0.1 doesn't allow remote connections! http://stackoverflow.com/a/32404451
 	var port = flag.Int("port", 8080, "Port to run webserver on")
 	var staticPath = flag.String("staticPath", "dist/", "Path to static files")
 
