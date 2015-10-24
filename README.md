@@ -22,3 +22,7 @@ it should look like; create clientId and secret on delicious' site
   "password": "your password"
 }
 
+if you plan to build a docker image as prescribed in the Dockerfile, you should build the executable with:
+CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o deligo .
+more info at http://esdeeblog.blogspot.de/2015/10/create-slim-and-lean-docker-image-for.html
+
