@@ -35,7 +35,11 @@
             "description": $("#description").val()
           } //If the request needs any data
         }).done(function(data) {
-          showAlert($(data).find("result").attr("code"), "alert alert-danger");
+		  if ($(data).find("result").attr("code") == "done") {
+			showAlert($(data).find("result").attr("code"), "alert alert-success");
+		  } else {
+          	showAlert($(data).find("result").attr("code"), "alert alert-warning");
+		  }
         }).fail(function() {
           // There was an error
           showAlert("Some error occurred", "alert alert-danger");
